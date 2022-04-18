@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/favBreedItemImageView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:minHeight="50dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/favBreedItemNameText"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="NAME"
+        android:textAllCaps="true"
+        android:padding="10dp"
+        android:layout_weight="1"/>
+
+    <ImageButton
+        android:id="@+id/favBreedItemFavImageButton"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="30dp"
+        android:src="@drawable/ic_not_fav"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_weight="1"/>
+
+</LinearLayout>

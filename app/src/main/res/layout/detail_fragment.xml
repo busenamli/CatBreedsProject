@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.DetailFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/catImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="20dp"
+            android:minHeight="200dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher_round">
+
+        </ImageView>
+
+        <LinearLayout
+            android:id="@+id/catNameLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catImage">
+
+            <TextView
+                android:id="@+id/catName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="7dp"
+                android:text="Name:"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/catNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_margin="7dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/catOriginLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catNameLinear">
+
+            <TextView
+                android:id="@+id/catOrigin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Origin:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <TextView
+                android:id="@+id/catOriginText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catLifespanLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catOriginLinear">
+
+            <TextView
+                android:id="@+id/catLifespan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Life Span:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <TextView
+                android:id="@+id/catLifespanText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catTemperamentLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catLifespanLinear">
+
+            <TextView
+                android:id="@+id/catTemperament"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temperament:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <TextView
+                android:id="@+id/catTemperamentText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catDescriptionLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catTemperamentLinear">
+
+            <TextView
+                android:id="@+id/catDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <TextView
+                android:id="@+id/catDescriptionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

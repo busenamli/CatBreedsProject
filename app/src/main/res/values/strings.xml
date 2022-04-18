@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cat Breeds</string>
+    <string name="favorite_fragment_name">Favorites</string>
+    <string name="detail_fragment_name"></string>
+    <string name="error_text">Something Wrong... Please Try Again!</string>
+    <string name="empty_text">There is nothing to show!</string>
+</resources>
