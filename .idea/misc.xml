@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/casper/Desktop/CatBreedsProject/app/src/main/res/drawable/ic_fav.xml" value="0.2203125" />
+        <entry key="..\:/Users/casper/Desktop/CatBreedsProject/app/src/main/res/drawable/ic_favorite.xml" value="0.2203125" />
         <entry key="..\:/Users/casper/Desktop/CatBreedsProject/app/src/main/res/drawable/ic_favorite_fragment.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/casper/Desktop/CatBreedsProject/app/src/main/res/drawable/ic_not_fav.xml" value="0.2203125" />
+        <entry key="..\:/Users/casper/Desktop/CatBreedsProject/app/src/main/res/drawable/ic_not_favorite.xml" value="0.2203125" />
         <entry key="..\:/Users/casper/Desktop/CatBreedsProject/app/src/main/res/drawable/spash_screen.xml" value="0.22" />
         <entry key="..\:/Users/casper/Desktop/CatBreedsProject/app/src/main/res/drawable/style.xml" value="0.2203125" />
         <entry key="..\:/Users/casper/Desktop/CatBreedsProject/app/src/main/res/layout/activity_main.xml" value="0.15217391304347827" />

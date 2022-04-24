@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.busenamli.catbreedsproject.util.BreedFavStorage
 import com.busenamli.catbreedsproject.FavListFromStorage
+import com.busenamli.catbreedsproject.FavListFromStorage.favListStorage
 import com.busenamli.catbreedsproject.viewmodel.FavoritesViewModel
 import com.busenamli.catbreedsproject.R
 import com.busenamli.catbreedsproject.adapter.FavoriteAdapter
@@ -26,7 +27,6 @@ class FavoritesFragment : Fragment() {
     private lateinit var viewModel: FavoritesViewModel
     private val favoriteAdapter = FavoriteAdapter(arrayListOf())
     lateinit var breedFavStorage : BreedFavStorage
-    private lateinit var FavBreedModelList : ArrayList<CatBreedWithImageSearchModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,14 +50,22 @@ class FavoritesFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
 
         if (breedFavStorage.getArrayList(breedFavStorage.ARRAY_KEY) != null) {
-            FavListFromStorage.favListStorage =
-                ArrayList(breedFavStorage.getArrayList(breedFavStorage.ARRAY_KEY))
+            favListStorage = ArrayList(breedFavStorage.getArrayList(breedFavStorage.ARRAY_KEY))
 
-            viewModel.getDataSearchFromAPI(FavListFromStorage.favListStorage)
+            viewModel.getDataSearchFromAPI(favListStorage)
         }
 
         favoriteRecyclerView.layoutManager = LinearLayoutManager(context)
         favoriteRecyclerView.adapter = favoriteAdapter
+
+        swipeRefreshLayout.setOnRefreshListener {
+            favoriteRecyclerView.visibility = View.GONE
+            favoriteErrorText.visibility = View.GONE
+            favoriteProgressBar.visibility = View.VISIBLE
+
+            swipeRefreshLayout.isRefreshing = false
+            viewModel.getDataSearchFromAPI(favListStorage)
+        }
 
         observeLiveData()
 

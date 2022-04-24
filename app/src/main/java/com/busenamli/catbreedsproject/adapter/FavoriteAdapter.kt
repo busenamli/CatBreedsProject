@@ -32,13 +32,13 @@ class FavoriteAdapter(val favoriteCatBreedList: ArrayList<CatBreedWithImageSearc
         breedFavStorage = BreedFavStorage(holder.itemView.context)
 
         var breedName = favoriteCatBreedList.get(position).getSelectedCatBreed()?.get(0)?.catName
-        println(breedName)
+        println("Breed Name: " + breedName)
         var breedId = favoriteCatBreedList.get(position).getSelectedCatBreed()?.get(0)?.catId
-        println(breedId)
+        println("Breed ID" + breedId)
 
         holder.itemView.favBreedItemNameText.text = favoriteCatBreedList.get(position).getSelectedCatBreed()?.get(0)?.catName
 
-        println(favoriteCatBreedList.get(position).url)
+        println("Breed URL: " +favoriteCatBreedList.get(position).url)
 
         holder.itemView.favBreedItemImageView.downloadImage(
             favoriteCatBreedList.get(position).url,
@@ -65,14 +65,14 @@ class FavoriteAdapter(val favoriteCatBreedList: ArrayList<CatBreedWithImageSearc
             val action = FavoritesFragmentDirections.actionFavoritesFragmentToDetailFragment(
                 favoriteCatBreedList.get(position).getSelectedCatBreed()?.get(0),
                 favoriteCatBreedList.get(position).url)
-            println("Cat Id: " + favoriteCatBreedList.get(position).getSelectedCatBreed()?.get(0)?.catId)
+            //println("Cat Id: " + favoriteCatBreedList.get(position).getSelectedCatBreed()?.get(0)?.catId)
             Navigation.findNavController(it).navigate(action)
         }
 
     }
 
     override fun getItemCount(): Int {
-        println("size:" + favoriteCatBreedList.size)
+        //println("size:" + favoriteCatBreedList.size)
         return favoriteCatBreedList.size
     }
 

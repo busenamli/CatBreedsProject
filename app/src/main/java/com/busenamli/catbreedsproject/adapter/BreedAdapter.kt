@@ -68,7 +68,6 @@ class BreedAdapter(val catBreedList: ArrayList<CatBreedModel>):
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(catBreedList.get(position),null)
             println("Cat Id: " + catBreedList.get(position).catId)
             Navigation.findNavController(it).navigate(action)
-            //catBreedList.clear()
             println(catBreedList.size)
             notifyDataSetChanged()
         }
@@ -89,15 +88,4 @@ class BreedAdapter(val catBreedList: ArrayList<CatBreedModel>):
         }
 
     }
-
-    /*fun searchUpdateBreedList(newSearchCatBreedList: List<CatBreedWithImageSearchModel>){
-        if (currentPage == 0){
-            catBreedList.clear()
-            catBreedList.addAll(newSearchCatBreedList.get(0))
-            notifyDataSetChanged()
-        }else{
-            catBreedList.addAll(newCatBreedList)
-            notifyDataSetChanged()
-        }
-    }*/
 }

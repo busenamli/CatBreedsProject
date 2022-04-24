@@ -37,3 +37,41 @@ fun sortingBreeds(catBreedList : List<CatBreedWithImageSearchModel>) : List<CatB
     return sortedCatBreedList
 }
 
+fun settingText(value: Int?): String{
+    if (value == 0){
+        return "No"
+    }else{
+        return "Yes"
+    }
+}
+
+fun settingFavoriteImages(images : ArrayList<ImageView>, value: Int?){
+
+    when(value){
+        1 -> images.get(0).setImageResource(R.drawable.ic_fav)
+
+        2 -> {images.get(0).setImageResource(R.drawable.ic_fav)
+            images.get(1).setImageResource(R.drawable.ic_fav)
+        }
+        3 -> {images.get(0).setImageResource(R.drawable.ic_fav)
+            images.get(1).setImageResource(R.drawable.ic_fav)
+            images.get(2).setImageResource(R.drawable.ic_fav)
+        }
+        4 -> {images.get(0).setImageResource(R.drawable.ic_fav)
+            images.get(1).setImageResource(R.drawable.ic_fav)
+            images.get(2).setImageResource(R.drawable.ic_fav)
+            images.get(3).setImageResource(R.drawable.ic_fav)
+        }
+
+        5-> {images.get(0).setImageResource(R.drawable.ic_fav)
+            images.get(1).setImageResource(R.drawable.ic_fav)
+            images.get(2).setImageResource(R.drawable.ic_fav)
+            images.get(3).setImageResource(R.drawable.ic_fav)
+            images.get(4).setImageResource(R.drawable.ic_fav)
+        }
+
+        else -> {images.forEach {
+            it.setImageResource(R.drawable.ic_not_fav) }
+        }
+    }
+}

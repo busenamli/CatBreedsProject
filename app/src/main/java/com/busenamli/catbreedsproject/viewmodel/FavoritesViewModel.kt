@@ -23,7 +23,12 @@ class FavoritesViewModel : ViewModel() {
     val isFavLiveData = MutableLiveData<Boolean>()
 
     fun getDataSearchFromAPI(valueList: ArrayList<String?>?) {
-        favLoadingLiveData.value = true
+
+        if (valueList.isNullOrEmpty()){
+            isFavLiveData.value = true
+        }else{
+            favLoadingLiveData.value = true
+        }
 
         favCatBreedList.clear()
 
@@ -36,6 +41,7 @@ class FavoritesViewModel : ViewModel() {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(object: DisposableObserver<List<CatBreedWithImageSearchModel>>(){
                             override fun onNext(t: List<CatBreedWithImageSearchModel>) {
+
                                 if (t.size == 1){
                                     favCatBreedList.add(t.get(0))
                                 }

@@ -70,32 +70,6 @@ class HomeFragment : Fragment() {
 
         setRecyclerViewScrollListener()
 
-        /*scrollListener = object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                val totalItemCount = recyclerView!!.layoutManager?.itemCount
-                if (totalItemCount == lastVisibleItemPosition + 1) {
-                    currentPage++
-                    viewModel.getDataFromAPI(limit,currentPage.toString())
-                    println("Load new list")
-                    breedRecyclerView.removeOnScrollListener(scrollListener)
-                }
-            }
-        }*/
-
-        /*breedRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                val totalItemCount = recyclerView!!.layoutManager.itemCount
-                if (totalItemCount == lastVisibleItemPosition + 1) {
-                    println("Load new list")
-                    breedRecyclerView.removeOnScrollListener(scrollListener)
-                }
-            }
-
-        })
-        breedRecyclerView.addOnScrollListener(scrollListener)*/
-
         observeLiveData()
 
     }
@@ -157,15 +131,6 @@ class HomeFragment : Fragment() {
                 breedAdapter.updateBreedList(breeds)
             }
         })
-
-        /*viewModel.searchBreedsLiveData.observe(viewLifecycleOwner, Observer { breeds ->
-            breeds?.let{
-                breedRecyclerView.visibility = View.VISIBLE
-                searchEditText.visibility = View.VISIBLE
-                searchButton.visibility = View.VISIBLE
-                breedAdapter.updateBreedList(breeds)
-            }
-        })*/
 
         viewModel.homeErrorLiveData.observe(viewLifecycleOwner, Observer {error ->
             error?.let {

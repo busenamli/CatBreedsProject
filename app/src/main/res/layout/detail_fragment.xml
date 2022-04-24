@@ -134,11 +134,87 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/catDescriptionLinear"
+            android:id="@+id/catHypoallergenicLinear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@id/catTemperamentLinear">
+
+            <TextView
+                android:id="@+id/catHypoallergenic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hypoallergenic:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <TextView
+                android:id="@+id/catHypoallergenicText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catIndoorLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catHypoallergenicLinear">
+
+            <TextView
+                android:id="@+id/catIndoor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Indoor:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <TextView
+                android:id="@+id/catIndoorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catLapLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catIndoorLinear">
+
+            <TextView
+                android:id="@+id/catLap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lap:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <TextView
+                android:id="@+id/catLapText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catDescriptionLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catLapLinear">
 
             <TextView
                 android:id="@+id/catDescription"
@@ -157,6 +233,235 @@
                 android:layout_margin="7dp"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catAffectionLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catDescriptionLinear">
+
+            <TextView
+                android:id="@+id/catAffection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Affection Level:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <GridLayout
+                android:layout_gravity="center"
+                android:id="@+id/catAffectionGridLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="5">
+
+                <ImageView
+                    android:id="@+id/catAffectionImageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catAffectionImageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catAffectionImageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catAffectionImageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catAffectionImageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+            </GridLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catSocialNeedsLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catAffectionLinear">
+
+            <TextView
+                android:id="@+id/catSocialNeeds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Social Needs:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <GridLayout
+                android:layout_gravity="center"
+                android:id="@+id/catSocialNeedsGridLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="5">
+
+                <ImageView
+                    android:id="@+id/catSocialNeedsImageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catSocialNeedsImageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catSocialNeedsImageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catSocialNeedsImageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catSocialNeedsImageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+            </GridLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catIntelligenceLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catSocialNeedsLinear">
+
+            <TextView
+                android:id="@+id/catIntelligence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Intelligence:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <GridLayout
+                android:layout_gravity="center"
+                android:id="@+id/catIntelligenceGridLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="5">
+
+                <ImageView
+                    android:id="@+id/catIntelligenceImageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catIntelligenceImageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catIntelligenceImageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catIntelligenceImageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catIntelligenceImageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+            </GridLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catAdaptabilityLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/catIntelligenceLinear">
+
+            <TextView
+                android:id="@+id/catAdaptability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adaptability:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_margin="7dp"/>
+
+            <GridLayout
+                android:layout_gravity="center"
+                android:id="@+id/catAdaptabilityGridLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="5">
+
+                <ImageView
+                    android:id="@+id/catAdaptabilityImageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catAdaptabilityImageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catAdaptabilityImageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catAdaptabilityImageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+                <ImageView
+                    android:id="@+id/catAdaptabilityImageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_fav"/>
+
+            </GridLayout>
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 
