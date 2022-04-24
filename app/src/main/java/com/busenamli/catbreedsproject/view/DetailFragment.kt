@@ -1,18 +1,13 @@
 package com.busenamli.catbreedsproject.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import com.busenamli.catbreedsproject.BreedFavStorage
-import com.busenamli.catbreedsproject.viewmodel.DetailViewModel
+import com.busenamli.catbreedsproject.util.BreedFavStorage
 import com.busenamli.catbreedsproject.R
 import com.busenamli.catbreedsproject.model.CatBreedModel
 import com.busenamli.catbreedsproject.util.downloadImage
 import com.busenamli.catbreedsproject.util.placeHolderProgressBar
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.detail_fragment.*
 
 class DetailFragment : Fragment() {
@@ -25,6 +20,8 @@ class DetailFragment : Fragment() {
     private var breedModel: CatBreedModel? = null
     lateinit var breedFavStorage : BreedFavStorage
     var breedName: String? = null
+    var breedId: String? = null
+    var breedUrl: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,11 +51,19 @@ class DetailFragment : Fragment() {
            breedModel = DetailFragmentArgs.fromBundle(it).selectedBreed
            println("Breed Id: ${breedModel!!.catId}")
 
+           breedUrl = DetailFragmentArgs.fromBundle(it).imageUrl
+           println("Breed Url: ${breedUrl}")
+
            breedModel?.let {
                activity?.setTitle(it.catName)
                breedName = it.catName
+               breedId = it.catId
                catNameText.text = it.catName
-               catImage.downloadImage(it.catImage?.url, placeHolderProgressBar(view.context))
+               if (breedUrl != null){
+                   catImage.downloadImage(breedUrl,placeHolderProgressBar(view.context))
+               }else {
+                   catImage.downloadImage(it.catImage?.url, placeHolderProgressBar(view.context))
+               }
                catTemperamentText.text = it.catTemperament
                catOriginText.text = it.catOrigin
                catDescriptionText.text = it.catDescription
@@ -91,11 +96,11 @@ class DetailFragment : Fragment() {
              R.id.fav_item -> {
                  if (breedFavStorage.isFav(breedName)){
                      item.setIcon(R.drawable.ic_not_fav)
-                     breedFavStorage.removeData(breedName)
+                     breedFavStorage.removeData(breedName,breedId)
                      println("favorilerden çıkarıldı")
                  }else{
                      item.setIcon(R.drawable.ic_fav)
-                     breedFavStorage.saveData(breedName)
+                     breedFavStorage.saveData(breedName,breedId)
                      println("favorilere eklendi")
                  }
                  return true

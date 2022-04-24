@@ -29,17 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(toolBar,navController,appBarConfiguration);
 
-        // appBarConfiguration = Builder(navController.graph).build()
-
-        /*setSupportActionBar(toolBar)
-
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-
-        navController = navHostFragment.navController
-
-        setupActionBarWithNavController(navController)*/
-
     }
 
     override fun onSupportNavigateUp(): Boolean {

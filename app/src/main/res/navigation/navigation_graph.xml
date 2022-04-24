@@ -26,7 +26,12 @@
             app:destination="@id/homeFragment" />
         <argument
             android:name="selectedBreed"
-            app:argType="com.busenamli.catbreedsproject.model.CatBreedModel" />
+            app:argType="com.busenamli.catbreedsproject.model.CatBreedModel"
+            app:nullable="true" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"

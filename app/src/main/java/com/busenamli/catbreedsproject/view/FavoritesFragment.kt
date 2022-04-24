@@ -8,17 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.busenamli.catbreedsproject.BreedFavStorage
+import com.busenamli.catbreedsproject.util.BreedFavStorage
 import com.busenamli.catbreedsproject.FavListFromStorage
 import com.busenamli.catbreedsproject.viewmodel.FavoritesViewModel
 import com.busenamli.catbreedsproject.R
-import com.busenamli.catbreedsproject.adapter.BreedAdapter
 import com.busenamli.catbreedsproject.adapter.FavoriteAdapter
-import com.busenamli.catbreedsproject.model.CatBreedModel
+import com.busenamli.catbreedsproject.model.CatBreedWithImageSearchModel
 import com.busenamli.catbreedsproject.util.sortingBreeds
-import com.busenamli.catbreedsproject.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.favorites_fragment.*
-import kotlinx.android.synthetic.main.home_fragment.*
 
 class FavoritesFragment : Fragment() {
 
@@ -29,7 +26,7 @@ class FavoritesFragment : Fragment() {
     private lateinit var viewModel: FavoritesViewModel
     private val favoriteAdapter = FavoriteAdapter(arrayListOf())
     lateinit var breedFavStorage : BreedFavStorage
-    private lateinit var FavBreedModelList : ArrayList<CatBreedModel>
+    private lateinit var FavBreedModelList : ArrayList<CatBreedWithImageSearchModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,11 +56,6 @@ class FavoritesFragment : Fragment() {
             viewModel.getDataSearchFromAPI(FavListFromStorage.favListStorage)
         }
 
-        /*FavListFromStorage.favListStorage?.forEach {
-            println(it)
-            viewModel.getDataSearchFromAPI(it)
-        }*/
-
         favoriteRecyclerView.layoutManager = LinearLayoutManager(context)
         favoriteRecyclerView.adapter = favoriteAdapter
 
@@ -74,7 +66,6 @@ class FavoritesFragment : Fragment() {
     fun observeLiveData(){
         viewModel.favBreedsLiveData.observe(viewLifecycleOwner, Observer { breeds ->
             breeds?.let{
-                sortingBreeds(breeds)
                 favoriteRecyclerView.visibility = View.VISIBLE
                 favoriteAdapter.updateBreedList(breeds)
             }

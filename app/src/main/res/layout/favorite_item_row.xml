@@ -22,7 +22,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="16sp"
-        android:text="NAME"
         android:textAllCaps="true"
         android:padding="10dp"
         android:layout_weight="1"/>

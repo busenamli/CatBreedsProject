@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.busenamli.catbreedsproject.BreedFavStorage
-import com.busenamli.catbreedsproject.FavListFromStorage
+import androidx.recyclerview.widget.RecyclerView
+import com.busenamli.catbreedsproject.*
+import com.busenamli.catbreedsproject.CurrentPage.currentPage
 import com.busenamli.catbreedsproject.viewmodel.HomeViewModel
-import com.busenamli.catbreedsproject.R
 import com.busenamli.catbreedsproject.adapter.BreedAdapter
+import com.busenamli.catbreedsproject.util.BreedFavStorage
+import com.busenamli.catbreedsproject.util.InfiniteScrollListener
 import kotlinx.android.synthetic.main.home_fragment.*
 
 class HomeFragment : Fragment() {
@@ -23,6 +25,10 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: HomeViewModel
     private val breedAdapter = BreedAdapter(arrayListOf())
     lateinit var breedFavStorage : BreedFavStorage
+
+    private lateinit var scrollListener: InfiniteScrollListener
+
+    var limit = "10"
 
 
     override fun onCreateView(
@@ -45,7 +51,7 @@ class HomeFragment : Fragment() {
 
         breedFavStorage = BreedFavStorage(view.context)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        viewModel.getDataFromAPI("20","0")
+        viewModel.getDataFromAPI(limit,"0")
 
         searchButton.setOnClickListener {
 
@@ -53,7 +59,7 @@ class HomeFragment : Fragment() {
             println("searchtext: " + searchText)
 
             if(searchText == null || searchText == ""){
-                viewModel.getDataFromAPI("15","0")
+                viewModel.getDataFromAPI(limit,"0")
             }else{
                 viewModel.getDataSearchFromAPI(searchText)
             }
@@ -62,23 +68,66 @@ class HomeFragment : Fragment() {
         breedRecyclerView.layoutManager = LinearLayoutManager(context)
         breedRecyclerView.adapter = breedAdapter
 
+        setRecyclerViewScrollListener()
+
+        /*scrollListener = object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                val totalItemCount = recyclerView!!.layoutManager?.itemCount
+                if (totalItemCount == lastVisibleItemPosition + 1) {
+                    currentPage++
+                    viewModel.getDataFromAPI(limit,currentPage.toString())
+                    println("Load new list")
+                    breedRecyclerView.removeOnScrollListener(scrollListener)
+                }
+            }
+        }*/
+
+        /*breedRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                val totalItemCount = recyclerView!!.layoutManager.itemCount
+                if (totalItemCount == lastVisibleItemPosition + 1) {
+                    println("Load new list")
+                    breedRecyclerView.removeOnScrollListener(scrollListener)
+                }
+            }
+
+        })
+        breedRecyclerView.addOnScrollListener(scrollListener)*/
+
         observeLiveData()
 
     }
 
+    private fun setRecyclerViewScrollListener(){
+
+        scrollListener = object : InfiniteScrollListener(breedRecyclerView.layoutManager as LinearLayoutManager){
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                viewModel.getDataFromAPI(limit,page.toString())
+            }
+        }
+        breedRecyclerView.addOnScrollListener(scrollListener)
+    }
+
     override fun onResume() {
         super.onResume()
+
         searchButton.setOnClickListener {
+
+            currentPage = 0
 
             var searchText = searchEditText.text.toString()
             println("searchtext: " + searchText)
 
             if(searchText == null || searchText == ""){
-                viewModel.getDataFromAPI("15","0")
+                viewModel.getDataFromAPI(limit,"0")
             }else{
+                searchEditText.text.clear()
                 viewModel.getDataSearchFromAPI(searchText)
             }
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -90,7 +139,7 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.fav_fragment_item -> {
-                println("tıklandı")
+                currentPage = 0
                 val action = HomeFragmentDirections.actionHomeFragmentToFavoritesFragment()
                 Navigation.findNavController(requireView()).navigate(action)
                 return true
@@ -99,6 +148,7 @@ class HomeFragment : Fragment() {
     }
 
     fun observeLiveData(){
+
         viewModel.breedsLiveData.observe(viewLifecycleOwner, Observer { breeds ->
             breeds?.let {
                 breedRecyclerView.visibility = View.VISIBLE
@@ -107,6 +157,15 @@ class HomeFragment : Fragment() {
                 breedAdapter.updateBreedList(breeds)
             }
         })
+
+        /*viewModel.searchBreedsLiveData.observe(viewLifecycleOwner, Observer { breeds ->
+            breeds?.let{
+                breedRecyclerView.visibility = View.VISIBLE
+                searchEditText.visibility = View.VISIBLE
+                searchButton.visibility = View.VISIBLE
+                breedAdapter.updateBreedList(breeds)
+            }
+        })*/
 
         viewModel.homeErrorLiveData.observe(viewLifecycleOwner, Observer {error ->
             error?.let {
@@ -126,7 +185,7 @@ class HomeFragment : Fragment() {
             loading?.let {
                 if(it){
                     homeProgressBar.visibility = View.VISIBLE
-                    breedRecyclerView.visibility = View.GONE
+                    //breedRecyclerView.visibility = View.GONE
                     homeErrorText.visibility = View.GONE
                     searchEditText.visibility = View.GONE
                     searchButton.visibility = View.GONE
@@ -135,6 +194,7 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+
     }
 
 }

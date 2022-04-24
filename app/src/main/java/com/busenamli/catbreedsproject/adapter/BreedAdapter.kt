@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.busenamli.catbreedsproject.BreedFavStorage
+import com.busenamli.catbreedsproject.util.BreedFavStorage
+import com.busenamli.catbreedsproject.CurrentPage.currentPage
 import com.busenamli.catbreedsproject.R
 import com.busenamli.catbreedsproject.model.CatBreedModel
+import com.busenamli.catbreedsproject.model.CatBreedWithImageSearchModel
 import com.busenamli.catbreedsproject.util.downloadImage
 import com.busenamli.catbreedsproject.util.placeHolderProgressBar
 import com.busenamli.catbreedsproject.view.HomeFragmentDirections
@@ -32,6 +34,7 @@ class BreedAdapter(val catBreedList: ArrayList<CatBreedModel>):
         breedFavStorage = BreedFavStorage(holder.itemView.context)
 
         var breedName = catBreedList.get(position).catName
+        var breedId = catBreedList.get(position).catId
 
         holder.itemView.breedItemNameText.text = catBreedList.get(position).catName
 
@@ -50,18 +53,24 @@ class BreedAdapter(val catBreedList: ArrayList<CatBreedModel>):
 
         holder.itemView.breedItemFavImageButton.setOnClickListener {
             if (breedFavStorage.isFav(breedName)){
+                println("Id: "+ breedId)
                 holder.itemView.breedItemFavImageButton.setImageResource(R.drawable.ic_not_fav);
-                breedFavStorage.removeData(breedName);
+                breedFavStorage.removeData(breedName,breedId);
             }else{
+                println("Id: " + breedId)
                 holder.itemView.breedItemFavImageButton.setImageResource(R.drawable.ic_fav);
-                breedFavStorage.saveData(breedName);
+                breedFavStorage.saveData(breedName,breedId);
             }
         }
 
         holder.itemView.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(catBreedList.get(position))
+            currentPage = 0
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(catBreedList.get(position),null)
             println("Cat Id: " + catBreedList.get(position).catId)
             Navigation.findNavController(it).navigate(action)
+            //catBreedList.clear()
+            println(catBreedList.size)
+            notifyDataSetChanged()
         }
     }
 
@@ -70,8 +79,25 @@ class BreedAdapter(val catBreedList: ArrayList<CatBreedModel>):
     }
 
     fun updateBreedList(newCatBreedList: List<CatBreedModel> ){
-        catBreedList.clear()
-        catBreedList.addAll(newCatBreedList)
-        notifyDataSetChanged()
+        if (currentPage == 0){
+            catBreedList.clear()
+            catBreedList.addAll(newCatBreedList)
+            notifyDataSetChanged()
+        }else{
+            catBreedList.addAll(newCatBreedList)
+            notifyDataSetChanged()
+        }
+
     }
+
+    /*fun searchUpdateBreedList(newSearchCatBreedList: List<CatBreedWithImageSearchModel>){
+        if (currentPage == 0){
+            catBreedList.clear()
+            catBreedList.addAll(newSearchCatBreedList.get(0))
+            notifyDataSetChanged()
+        }else{
+            catBreedList.addAll(newCatBreedList)
+            notifyDataSetChanged()
+        }
+    }*/
 }

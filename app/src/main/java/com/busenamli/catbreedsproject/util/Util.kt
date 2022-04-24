@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.busenamli.catbreedsproject.R
 import com.busenamli.catbreedsproject.model.CatBreedModel
+import com.busenamli.catbreedsproject.model.CatBreedWithImageSearchModel
 
 //Extension
 fun ImageView.downloadImage(url: String?, progressDrawable: CircularProgressDrawable){
@@ -29,9 +30,10 @@ fun placeHolderProgressBar(context: Context) : CircularProgressDrawable{
     }
 }
 
-fun sortingBreeds(catBreedList : List<CatBreedModel>) : List<CatBreedModel>{
+fun sortingBreeds(catBreedList : List<CatBreedWithImageSearchModel>) : List<CatBreedWithImageSearchModel>{
     val sortedCatBreedList = catBreedList.sortedWith(
-        compareBy({it.catName})
+        compareBy({ it.getSelectedCatBreed()?.get(0)?.catName })
     )
     return sortedCatBreedList
 }
+
