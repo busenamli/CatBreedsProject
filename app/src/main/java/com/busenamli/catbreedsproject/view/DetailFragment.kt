@@ -64,7 +64,6 @@ class DetailFragment : Fragment() {
                activity?.setTitle(it.catName)
                breedName = it.catName
                breedId = it.catId
-               catNameText.text = it.catName
                if (breedUrl != null){
                    catImage.downloadImage(breedUrl,placeHolderProgressBar(view.context))
                }else {

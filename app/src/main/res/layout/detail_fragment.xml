@@ -26,41 +26,27 @@
         </ImageView>
 
         <LinearLayout
-            android:id="@+id/catNameLinear"
+            android:id="@+id/catDescriptionLinear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@id/catImage">
 
             <TextView
-                android:id="@+id/catName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginEnd="7dp"
-                android:layout_marginBottom="7dp"
-                android:text="Name:"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:id="@+id/catNameText"
+                android:id="@+id/catDescriptionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:layout_margin="7dp" />
+                android:layout_margin="7dp"/>
 
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/catOriginLinear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/catNameLinear">
+            android:layout_below="@id/catDescriptionLinear">
 
             <TextView
                 android:id="@+id/catOrigin"
@@ -210,36 +196,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/catDescriptionLinear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/catLapLinear">
-
-            <TextView
-                android:id="@+id/catDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Description:"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_margin="7dp"/>
-
-            <TextView
-                android:id="@+id/catDescriptionText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_margin="7dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/catAffectionLinear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/catDescriptionLinear">
+            android:layout_below="@id/catLapLinear">
 
             <TextView
                 android:id="@+id/catAffection"
@@ -461,7 +422,6 @@
             </GridLayout>
 
         </LinearLayout>
-
 
     </RelativeLayout>
 

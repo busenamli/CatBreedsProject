@@ -26,6 +26,7 @@ class FavoritesViewModel : ViewModel() {
 
         if (valueList.isNullOrEmpty()){
             isFavLiveData.value = true
+            favErrorLiveData.value = false
         }else{
             favLoadingLiveData.value = true
         }
