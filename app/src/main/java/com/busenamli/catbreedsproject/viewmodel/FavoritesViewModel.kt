@@ -1,10 +1,11 @@
 package com.busenamli.catbreedsproject.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.busenamli.catbreedsproject.model.CatBreedModel
 import com.busenamli.catbreedsproject.model.CatBreedWithImageSearchModel
 import com.busenamli.catbreedsproject.service.CatBreedService
+import com.busenamli.catbreedsproject.util.BreedFavStorage
 import com.busenamli.catbreedsproject.util.sortingBreeds
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -15,12 +16,28 @@ class FavoritesViewModel : ViewModel() {
 
     private val catBreedService = CatBreedService()
     private val disposable = CompositeDisposable()
+    private lateinit var breedFavStorage : BreedFavStorage
+
+    var favList: ArrayList<String?>? = null
 
     var favCatBreedList = ArrayList<CatBreedWithImageSearchModel>()
     val favBreedsLiveData = MutableLiveData<List<CatBreedWithImageSearchModel>>()
     val favErrorLiveData = MutableLiveData<Boolean>()
     val favLoadingLiveData = MutableLiveData<Boolean>()
     val isFavLiveData = MutableLiveData<Boolean>()
+
+    fun getFavList(context: Context){
+
+        breedFavStorage = BreedFavStorage(context)
+
+        println("SIZE:" + (breedFavStorage.getArrayList(breedFavStorage.ARRAY_KEY)))
+
+        if (breedFavStorage.getArrayList(breedFavStorage.ARRAY_KEY) != null) {
+            favList = ArrayList(breedFavStorage.getArrayList(breedFavStorage.ARRAY_KEY))
+            println("SIZE:" + favList?.size)
+            getDataSearchFromAPI(favList)
+        }
+    }
 
     fun getDataSearchFromAPI(valueList: ArrayList<String?>?) {
 
@@ -72,5 +89,10 @@ class FavoritesViewModel : ViewModel() {
 
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
     }
 }
