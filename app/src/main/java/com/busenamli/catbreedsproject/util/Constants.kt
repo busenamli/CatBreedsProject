@@ -8,9 +8,6 @@ object Constants{
     const val GET_BREED_WITH_IMAGE_BY_SEARCH_KEY = "images/search"
 }
 
-object FavListFromStorage{
-    var favListStorage: ArrayList<String?>? = null
-}
 object CurrentPage{
     var currentPage = 0
 }

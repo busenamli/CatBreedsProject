@@ -9,13 +9,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.busenamli.catbreedsproject.util.BreedFavStorage
-import com.busenamli.catbreedsproject.FavListFromStorage
-import com.busenamli.catbreedsproject.FavListFromStorage.favListStorage
 import com.busenamli.catbreedsproject.viewmodel.FavoritesViewModel
 import com.busenamli.catbreedsproject.R
 import com.busenamli.catbreedsproject.adapter.FavoriteAdapter
-import com.busenamli.catbreedsproject.model.CatBreedWithImageSearchModel
-import com.busenamli.catbreedsproject.util.sortingBreeds
 import kotlinx.android.synthetic.main.favorites_fragment.*
 
 class FavoritesFragment : Fragment() {
@@ -26,7 +22,7 @@ class FavoritesFragment : Fragment() {
 
     private lateinit var viewModel: FavoritesViewModel
     private val favoriteAdapter = FavoriteAdapter(arrayListOf())
-    lateinit var breedFavStorage : BreedFavStorage
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,25 +31,13 @@ class FavoritesFragment : Fragment() {
         return inflater.inflate(R.layout.favorites_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
 
-        breedFavStorage = BreedFavStorage(view.context)
         viewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
-
-        if (breedFavStorage.getArrayList(breedFavStorage.ARRAY_KEY) != null) {
-            favListStorage = ArrayList(breedFavStorage.getArrayList(breedFavStorage.ARRAY_KEY))
-
-            viewModel.getDataSearchFromAPI(favListStorage)
-        }
+        viewModel.getFavList(requireContext())
 
         favoriteRecyclerView.layoutManager = LinearLayoutManager(context)
         favoriteRecyclerView.adapter = favoriteAdapter
@@ -64,7 +48,7 @@ class FavoritesFragment : Fragment() {
             favoriteProgressBar.visibility = View.VISIBLE
 
             swipeRefreshLayout.isRefreshing = false
-            viewModel.getDataSearchFromAPI(favListStorage)
+            viewModel.getFavList(requireContext())
         }
 
         observeLiveData()
